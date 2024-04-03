@@ -1,13 +1,14 @@
 import { Pressable, View ,Text, SafeAreaView,StyleSheet,ScrollView} from 'react-native';
-
+import { ClerkProvider } from "@clerk/clerk-expo";
 import { Link } from 'expo-router';
-import ListadeProdutos from '../components/ListadeProdutos/listadeProdutos';
+import ListadeProdutos from '../../components/ListadeProdutos/listadeProdutos';
 
 
 export default function Page() {
   return (
-    <SafeAreaView>
-      <ScrollView>
+
+    <SafeAreaView style={Styles.container}>
+      <ScrollView >
     <View>
       <Link href="/about">About</Link>
 
@@ -22,18 +23,32 @@ export default function Page() {
     </View>
     </ScrollView>
     </SafeAreaView>
+
   );
 }
 
 const Styles=StyleSheet.create({
-  Listadeprodutos:{
-    backgroundColor:"green", 
-    flex:1,
-    maxHeight:'100%',
+container:{
+width:'100%',
+flex:1,
+
     alignContent:'center',
     justifyContent:'center',
     alignItems:'center', 
-    minHeight:'100%' 
+
+
+},
+
+  Listadeprodutos:{
+    width:'100%',
+    backgroundColor:'rgb(194 65 12)', 
+    flex:1,
+    alignContent:'center',
+    justifyContent:'center',
+    alignItems:'center', 
+    borderColor:'orange',
+    borderWidth:5,
+    borderRadius:20,
 
   }
 })

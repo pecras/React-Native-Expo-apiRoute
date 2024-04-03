@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, ActivityIndicator, StyleSheet ,FlatList} from "react-native";
 
 async function fetchProduto() {
-  const response = await fetch('http://localhost:8081/produto');
+  const response = await fetch('http://localhost:8081/listaproduto');
   const data = await response.json();
   return data;
 }
@@ -26,7 +26,7 @@ export default function ListadeProdutos() {
       }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{ flex: 1, justifyContent: "center", width:'99%', alignItems: "center" }}>
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
     
@@ -34,9 +34,10 @@ export default function ListadeProdutos() {
         data && data.length > 0 ? (
              <FlatList
               data={data}
+              horizontal={true}
               renderItem={({ item,index }) => (
                 <View style={styles.container} key={index}>
-                  <Text>Nome: {item.nome}</Text>
+                  <Text style={styles.hearderText}>Nome: {item.nome}</Text>
                   <Text>Preço: {item.preco}</Text>
                   <Text>Marca: {item.marca}</Text>
                 </View>
@@ -54,15 +55,20 @@ export default function ListadeProdutos() {
 
 const styles=StyleSheet.create({
   container:{
-     color:"#0000ff",
-     borderColor:"black",
-
-     borderRadius:4
-
-    , alignContent:'center'
-    ,alignItems:'center'
-    ,flexDirection:'column',
-    gap:2,
+     
+     borderColor:"white",
+     margin:15,
+     padding:10,
+     borderRadius:10,
+ 
+     borderWidth:4,
+     alignContent:'center',
+    alignItems:'center',
+    flexDirection:'column',    gap:2,
   },
 
+  hearderText:{
+    color:"rgb(255 237 213)",
+    fontWeight:"400",
+  }
 })
